@@ -26,9 +26,9 @@
 
         </div>
         <div class='panel-body'>
-          <form class='form-horizontal' role='form' method='POST' action="#">
+          <form class='form-horizontal' role='form' method='POST' action="{{ route('update_project_skill') }}">
             {{ csrf_field() }}
-
+          <input type="hidden" name="project_id" value="{{$project->id}}">
             @foreach($project->project_skills as $skill)
             <div id='skill_{{$skill->id}}'>
               <div class="form-group">
@@ -55,6 +55,7 @@
             @endforeach
 
             <div id='new_skills'></div>
+            
             @if(count($project->project_skills) == 0)
             <div id='new_skills_template' class=''>
               <div class="form-group">
@@ -63,7 +64,6 @@
                     <input id="skill[]" type="text" class="form-control" name="skill[]" value="">
                 </div>
               </div>
-
               <div class='form-group'>
                 <label for="description" class="col-md-4 control-label">Description</label>
                 <div class="col-md-6">

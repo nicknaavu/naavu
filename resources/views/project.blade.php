@@ -34,6 +34,21 @@
         @endforeach
       </div>
     </div>
+
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3>Needed skills</h3>
+      </div>
+      <div class='panel-body'>
+        @foreach($project->project_skills as $skill)
+          <h4>{{$skill->skill}}</h4>
+          {{$skill->description}}
+          <hr>
+        @endforeach
+      </div>
+    </div>
+
+
   </div>
 </div>
 @endsection

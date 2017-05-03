@@ -49,6 +49,7 @@ Route::get('edit_project/{id}','projects@edit_project')->name('edit_project');
 Route::get('/edit_team/{id}','projects@edit_team')->name('edit_team');
 Route::get('/edit_project_skills/{id}','projects@edit_project_skills')->name('edit_project_skills');
 Route::post('/update_project','projects@update_project')->name('update_project');
+Route::post('/update_project_skill','projects@update_project_skill')->name('update_project_skill');
 
 
 //MESSAGES
