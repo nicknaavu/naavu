@@ -49,6 +49,13 @@ class projects extends Controller
       ]);
     }
 
+  public function edit_project_skills($id)
+    {
+      return view('edit_project_skills',[
+        'project'=>Project::findOrFail($id)
+      ]);
+    }
+
   public function update_project(Request $request)
     {
       $project = Project::find($request->id);

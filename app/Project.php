@@ -20,4 +20,10 @@ class Project extends Model
     {
       return $this->morphMany('App\Notification','notifiable');
     }
+
+  public function project_skills()
+    {
+      return $this->hasMany('App\Project_skill');
+    }
+
 }

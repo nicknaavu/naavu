@@ -17,6 +17,7 @@
           <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="#">Basic info</a></li>
             <li role="presentation"><a href="{{route('edit_team',['id'=>$project->id])}}">Team</a></li>
+            <li role="presentation"><a href="{{route('edit_project_skills',['id'=>$project->id])}}">Skills needed</a></li>
           </ul>
 
         </div>

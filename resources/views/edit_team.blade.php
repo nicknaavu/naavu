@@ -15,8 +15,9 @@
         <div class='panel-heading'>
 
           <ul class="nav nav-pills">
-            <li role="presentation"><a href="{{route('edit_team',['id'=>$project->id])}}">Basic info</a></li>
+            <li role="presentation"><a href="{{route('edit_project',['id'=>$project->id])}}">Basic info</a></li>
             <li role="presentation" class="active"><a href="#">Team</a></li>
+            <li role="presentation"><a href="{{route('edit_project_skills',['id'=>$project->id])}}">Skills needed</a></li>
           </ul>
 
         </div>

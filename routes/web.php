@@ -37,13 +37,19 @@ Route::get('/profile','profile@profile')->name('profile');
 Route::get('/edit_profile','profile@edit_profile')->name('edit_profile');
 Route::post('update_profile','profile@update_profile')->name('update_profile');
 
+//SEARCH AND MATCHING
+Route::get('/find_users','search@find_users')->name('find_users');
+Route::get('/find_projects','search@find_projects')->name('find_projects');
+
 //PROJECTS
 Route::get('/project/{id}','public_pages@project')->name('project');
 Route::get('/new_project','projects@new_project')->name('new_project');
 Route::post('/create_project','projects@create_project')->name('create_project');
 Route::get('edit_project/{id}','projects@edit_project')->name('edit_project');
-Route::post('/update_project','projects@update_project')->name('update_project');
 Route::get('/edit_team/{id}','projects@edit_team')->name('edit_team');
+Route::get('/edit_project_skills/{id}','projects@edit_project_skills')->name('edit_project_skills');
+Route::post('/update_project','projects@update_project')->name('update_project');
+
 
 //MESSAGES
 Route::get('/compose_message','messaging@compose_message')->name('compose_message');

@@ -23,8 +23,11 @@
         {{$project->description}}
       </div>
     </div>
-
+    
     <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3>Team</h3>
+      </div>
       <div class='panel-body'>
         @foreach($project->users as $user)
           <a href="/profile/{{$user->id}}">{{$user->name}}</a><hr>

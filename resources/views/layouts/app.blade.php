@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
@@ -65,6 +65,17 @@
                                         <a href="{{ route('profile') }}">
                                             My profile
                                         </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                      <a href="{{route('find_users')}}">
+                                        Find users
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="{{route('find_projects')}}">
+                                        Find projects
+                                      </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
