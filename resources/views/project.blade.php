@@ -23,14 +23,18 @@
         {{$project->description}}
       </div>
     </div>
-    
+
     <div class='panel panel-default'>
       <div class="panel-heading">
         <h3>Team</h3>
       </div>
       <div class='panel-body'>
         @foreach($project->users as $user)
-          <a href="/profile/{{$user->id}}">{{$user->name}}</a><hr>
+          <a href="/profile/{{$user->id}}">{{$user->name}}</a>
+          @if($user->pivot->status > 0) {{-- If the user is a team rep, indicate so  --}}
+            Team rep
+          @endif
+          <hr>
         @endforeach
       </div>
     </div>
