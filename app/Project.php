@@ -26,4 +26,8 @@ class Project extends Model
       return $this->hasMany('App\Project_skill');
     }
 
+  public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 }

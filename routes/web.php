@@ -51,7 +51,6 @@ Route::get('/edit_project_skills/{id}','projects@edit_project_skills')->name('ed
 Route::post('/update_project','projects@update_project')->name('update_project');
 Route::post('/update_project_skill','projects@update_project_skill')->name('update_project_skill');
 
-
 //MESSAGES
 Route::get('/compose_message','messaging@compose_message')->name('compose_message');
 Route::post('/create_thread','messaging@create_thread')->name('create_thread');
@@ -63,6 +62,12 @@ Route::post('thread/add_message','messaging@add_message')->name('add_message');
 Route::get('/view_notifications','notifications@view_notifications')->name('view_notifications');
 Route::post('/invite_to_project','notifications@invite_to_project')->name('invite_to_project');
 Route::get('/accept_invitation','notifications@accept_invitation')->name('accept_invitation');
+
+//POSTS
+Route::get('/compose_post/{id}','posts@compose_post')->name('compose_post_with_id');
+Route::get('/compose_post','posts@compose_post')->name('compose_post');
+Route::post('/create_post','posts@create_post')->name('create_post');
+
 
 //AUTH
 Auth::routes();
