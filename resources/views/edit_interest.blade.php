@@ -18,7 +18,7 @@
 
           <ul class="nav nav-pills">
             <li role="presentation"><a href="edit_profile">Basic info</a></li>
-            <li role="presentation"><a href="edit_interest">Skills</a></li>
+            <li role="presentation"><a href="edit_skill">Skills</a></li>
             <li role="presentation" class="active"><a href="#">Interests</a></li>
           </ul>
 

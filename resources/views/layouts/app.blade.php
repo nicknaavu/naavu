@@ -79,8 +79,8 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
-                                        <a href="{{ route('new_project') }}">
-                                            Create a project
+                                        <a href="{{ route('compose_post') }}">
+                                            Compose post
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>

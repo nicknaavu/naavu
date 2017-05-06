@@ -24,6 +24,15 @@ class posts extends Controller
           $post->user_id = Auth::id();
           $post->save();
 
-          return $post;
+          return redirect()->route('post',[
+            'id'=>$post->id
+            ]);
         }
+
+    public function post($id)
+      {
+        return view('post',[
+          'post'=>Post::find($id)
+        ]);
+      }
 }
