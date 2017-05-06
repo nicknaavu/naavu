@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'NAAVU') }}</title>
+    <title>NICK {{ config('app.name', 'NICK NAAVU') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -79,8 +79,8 @@
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
-                                        <a href="{{ route('new_project') }}">
-                                            Create a project
+                                        <a href="{{ route('compose_post') }}">
+                                            Compose post
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>

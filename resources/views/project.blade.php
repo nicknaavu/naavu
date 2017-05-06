@@ -53,6 +53,24 @@
     </div>
 
 
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3>posts</h3>
+      </div>
+      <div class='panel-body'>
+        @if(count($project->posts) > 0)
+          @foreach($project->posts as $post)
+            <div>
+              <a href="/post/{{$post->id}}"><h4>{{$post->title}}</h4></a>
+              {{$post->body}}
+            </div>
+          @endforeach
+        @else
+          No posts yet!
+        @endif
+      </div>
+    </div>
+
   </div>
 </div>
 @endsection
