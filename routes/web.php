@@ -61,7 +61,10 @@ Route::post('thread/add_message','messaging@add_message')->name('add_message');
 //INVITATIONS / NOTIFICATIONS
 Route::get('/view_notifications','notifications@view_notifications')->name('view_notifications');
 Route::post('/invite_to_project','notifications@invite_to_project')->name('invite_to_project');
+Route::post('/invite_to_rep','notifications@invite_to_rep')->name('invite_to_rep');
 Route::get('/accept_invitation','notifications@accept_invitation')->name('accept_invitation');
+
+
 
 //POSTS
 Route::get('/post/{id}','posts@post')->name('post');

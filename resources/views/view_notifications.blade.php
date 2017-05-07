@@ -17,6 +17,11 @@
               has invited you to join the project
               <a href="{{route('project',['id'=>$notification->notifiable->id])}}">{{$notification->notifiable->project}}</a>
               <a href="{{route('accept_invitation',['id'=>$notification->id])}}" class='btn btn-default'>Join</a>
+            @elseif($notification->type == 2)
+              <a href='{{route('profile_by_id',['id'=>$notification->sender->id])}}'>{{$notification->sender->name}}</a>
+              has invited you to be a rep for the project
+              <a href="{{route('project',['id'=>$notification->notifiable->id])}}">{{$notification->notifiable->project}}</a>
+              <a href="{{route('accept_invitation',['id'=>$notification->id])}}" class='btn btn-default'>Accept</a>
             @endif
             <hr />
           @endforeach

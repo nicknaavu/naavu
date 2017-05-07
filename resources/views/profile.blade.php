@@ -29,7 +29,7 @@
               </label>
               <div class='col-md-4'>
                 <select class='form-control' name='invitation_project' id='invitation_project'>
-                  @foreach(Auth::user()->projects as $project)
+                  @foreach(Auth::user()->projects->whereNotIn('id',$user->projects->pluck('id')) as $project)
                     <option value='{{$project->id}}'>
                       {{$project->project}}
                     </option>
