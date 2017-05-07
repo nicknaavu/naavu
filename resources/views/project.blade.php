@@ -71,6 +71,38 @@
       </div>
     </div>
 
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3>comments</h3>
+      </div>
+      <div class='panel-body'>
+        @if(count($project->comments) > 0)
+          @foreach($project->comments as $comment)
+            <a href="{{ route('profile',['id'=>$comment->commenter->id]) }}">{{$comment->commenter->name}}</a>
+            <br/>
+            {{$comment->body}}
+            <hr>
+          @endforeach
+        @endif
+        <form class='form-horizontal' method="POST" role="form" action="{{ route('add_project_comment')  }}">
+          {{ csrf_field() }}
+          <input type='hidden' name='project_id' value='{{$project->id}}'>
+          <div class='form-group'>
+            <div class='col-md-8'>
+              <textarea class='form-control vertical' name='body' id='body' placeholder="Add a comment" required></textarea>
+            </div>
+          </div>
+          <div class='form-group'>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-primary">
+                Comment
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
 </div>
 @endsection
