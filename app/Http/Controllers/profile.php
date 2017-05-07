@@ -16,12 +16,9 @@ class profile extends Controller
 
   public function profile()
     {
-      $user = Auth::user();
       return view('profile',[
-        'user'=>$user,
-        'skills'=>$user->skills,
-        'interests'=>$user->interests
-      ]);
+        'user' => Auth::user()
+  ]);
     }
 
   public function edit_profile(Request $request)

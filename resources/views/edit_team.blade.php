@@ -23,7 +23,20 @@
         </div>
         <div class='panel-body'>
           @foreach($project->users as $user)
-            <a href="{{route('profile_by_id',['id'=>$user->id])}}">{{$user->name}}</a> (Invitation to become a rep) <hr />
+            <a href="{{route('profile_by_id',['id'=>$user->id])}}">{{$user->name}}</a>
+
+              @if($user->pivot->status == 1)
+                Team rep
+              @elseif($user->pivot->status == 0 AND $project->reps()->pluck('id')->containsStrict(Auth::id() ) )
+                <form role='form' method='post' action='{{ route('invite_to_rep')   }}'>
+                  {{ csrf_field() }}
+                  <input type='hidden' name='recipient_id' value='{{$user->id}}'>
+                  <input type='hidden' name='invitation_project' value='{{$project->id}}'>
+                  <button class='btn btn-default' type='submit' value='Invite'>Invite to be rep</button>
+                </form>
+              @endif
+
+            <hr />
           @endforeach
         </div>
       </div>

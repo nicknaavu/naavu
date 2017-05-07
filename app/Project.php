@@ -16,6 +16,11 @@ class Project extends Model
       return $this->belongsToMany('App\User')->withTimestamps()->withPivot('status');
     }
 
+  public function reps()
+    {
+      return $this->belongsToMany('App\User')->wherePivot('status',1);
+    }
+
   public function notifications()
     {
       return $this->morphMany('App\Notification','notifiable');
