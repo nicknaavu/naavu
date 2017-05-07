@@ -64,14 +64,15 @@ Route::post('/invite_to_project','notifications@invite_to_project')->name('invit
 Route::post('/invite_to_rep','notifications@invite_to_rep')->name('invite_to_rep');
 Route::get('/accept_invitation','notifications@accept_invitation')->name('accept_invitation');
 
-
-
 //POSTS
 Route::get('/post/{id}','posts@post')->name('post');
 Route::get('/compose_post/{id}','posts@compose_post')->name('compose_post_with_id');
 Route::get('/compose_post','posts@compose_post')->name('compose_post');
 Route::post('/create_post','posts@create_post')->name('create_post');
 
+//COMMENTS
+Route::post('/add_post_comment','comments@add_post_comment')->name('add_post_comment');
+Route::post('/add_project_comment','comments@add_project_comment')->name('add_project_comment');
 
 //AUTH
 Auth::routes();

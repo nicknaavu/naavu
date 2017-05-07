@@ -26,6 +26,11 @@ class Project extends Model
       return $this->morphMany('App\Notification','notifiable');
     }
 
+  public function comments()
+    {
+      return $this->morphMany('App\Comment','commentable');
+    }
+
   public function project_skills()
     {
       return $this->hasMany('App\Project_skill');
