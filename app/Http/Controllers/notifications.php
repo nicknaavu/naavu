@@ -60,7 +60,9 @@ class notifications extends Controller
   //Accept invitation to join project
   public function accept_invitation(Request $request)
     {
-      switch($request->id)
+      $type = Notification::find($request->id)->type;
+
+      switch($type)
         {
           Case 1:
             //Add user to project as regular user
@@ -73,7 +75,7 @@ class notifications extends Controller
           Case 2:
             Project::find(Notification::find($request->id)->notifiable_id)
               ->users()
-              ->attach(Notification::find($request->id)->recipient_id,[
+              ->updateExistingPivot(Notification::find($request->id)->recipient_id,[
                 'status'=>1
               ]);
             break;
