@@ -35,6 +35,7 @@ Route::post('/delete_interest','interests@delete_interest')->name('delete_intere
 Route::get('/profile/{id}','public_pages@profile')->name('profile_by_id');
 Route::get('/profile','profile@profile')->name('profile');
 Route::get('/edit_profile','profile@edit_profile')->name('edit_profile');
+Route::get('edit_projects','profile@edit_projects')->name('edit_projects');
 Route::post('update_profile','profile@update_profile')->name('update_profile');
 
 //SEARCH AND MATCHING

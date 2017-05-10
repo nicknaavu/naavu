@@ -1,29 +1,10 @@
-@extends('layouts.app')
-
-@section('style')
-<link href="{{ asset('css/form.css') }}" rel="stylesheet">
-@endsection
+@extends('layouts.edit_profile')
 
 @section('script')
 <script src="{{ asset('js/edit_interest.js') }}"></script>
 @endsection
 
-@section('content')
-
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-8 col-md-offset-2'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-
-          <ul class="nav nav-pills">
-            <li role="presentation"><a href="edit_profile">Basic info</a></li>
-            <li role="presentation"><a href="edit_skill">Skills</a></li>
-            <li role="presentation" class="active"><a href="#">Interests</a></li>
-          </ul>
-
-        </div>
-        <div class='panel-body'>
+@section('controls')
           <form class="form-horizontal" role="form" method="post" action="update_interest">
             {{ csrf_field() }}
           <h3>Interests</h3>
@@ -106,11 +87,5 @@
                 </button>
               </div>
             </div>
-
           </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 @endsection
