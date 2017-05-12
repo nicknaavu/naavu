@@ -35,6 +35,7 @@ Route::post('/delete_interest','interests@delete_interest')->name('delete_intere
 Route::get('/profile/{id}','public_pages@profile')->name('profile_by_id');
 Route::get('/profile','profile@profile')->name('profile');
 Route::get('/edit_profile','profile@edit_profile')->name('edit_profile');
+Route::get('edit_projects','profile@edit_projects')->name('edit_projects');
 Route::post('update_profile','profile@update_profile')->name('update_profile');
 
 //SEARCH AND MATCHING
@@ -50,6 +51,8 @@ Route::get('/edit_team/{id}','projects@edit_team')->name('edit_team');
 Route::get('/edit_project_skills/{id}','projects@edit_project_skills')->name('edit_project_skills');
 Route::post('/update_project','projects@update_project')->name('update_project');
 Route::post('/update_project_skill','projects@update_project_skill')->name('update_project_skill');
+Route::post('/leave_project','projects@leave_project')->name('leave_project');
+
 
 //MESSAGES
 Route::get('/compose_message','messaging@compose_message')->name('compose_message');

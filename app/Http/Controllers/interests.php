@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 Use Auth;
 Use DB;
 Use App\Interest;
+Use Route;
 
 class interests extends Controller
 {
