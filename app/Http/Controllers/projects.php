@@ -65,7 +65,7 @@ class projects extends Controller
 
       return redirect('/edit_project/'.$project->id);
     }
-    
+
   public function update_project_skill(Request $request){
 
     //Update existing skills
@@ -109,6 +109,13 @@ class projects extends Controller
       return redirect(route('edit_project_skills',[
         'id'=>$request->project_id
         ]));
-  }    
-    
+  }
+
+  public function leave_project(Request $request)
+  {
+    Auth::user()->projects()->detach($request->project_id);
+
+    Return Auth::user()->projects;
+  }
+
 }
