@@ -53,7 +53,6 @@ Route::post('/update_project','projects@update_project')->name('update_project')
 Route::post('/update_project_skill','projects@update_project_skill')->name('update_project_skill');
 Route::post('/leave_project','projects@leave_project')->name('leave_project');
 
-
 //MESSAGES
 Route::get('/compose_message','messaging@compose_message')->name('compose_message');
 Route::post('/create_thread','messaging@create_thread')->name('create_thread');
@@ -76,6 +75,10 @@ Route::post('/create_post','posts@create_post')->name('create_post');
 //COMMENTS
 Route::post('/add_post_comment','comments@add_post_comment')->name('add_post_comment');
 Route::post('/add_project_comment','comments@add_project_comment')->name('add_project_comment');
+
+//LIKES
+Route::post('/like','likes@like')->name('like');
+Route::post('/unlike','likes@unlike')->name('unlike');
 
 //AUTH
 Auth::routes();
