@@ -10,7 +10,7 @@
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h1><strong>{{$user->name}}</strong>
-        @if(Auth::user()->id == $user->id)
+        @if(Auth::id() == $user->id)
           <a href="{{route('edit_profile')}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
         @endif
         </h1>

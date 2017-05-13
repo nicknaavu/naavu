@@ -22,6 +22,9 @@
       <div class='panel-body'>
         {{$project->description}}
       </div>
+      <div class='panel-footer' id='like_project'>
+        @component('component.like',['likable'=>$project,'target'=>'like_project']) @endcomponent
+      </div>
     </div>
 
     <div class='panel panel-default'>

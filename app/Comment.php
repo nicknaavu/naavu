@@ -23,4 +23,8 @@ class Comment extends Model
       return $this->morphTo();
     }
 
+  public function likes()
+    {
+      return $this->morphMany('App\Like','likable');
+    }
 }

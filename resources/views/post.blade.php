@@ -13,6 +13,9 @@
       <div class='panel-body'>
         {{$post->body}}
       </div>
+      <div class='panel-footer' id='like_post'>
+        @component('component.like',['likable'=>$post,'target'=>'like_post']) @endcomponent
+      </div>
       <div class='panel-footer'>
         @if(count($post->comments) > 0)
           @foreach($post->comments as $comment)
