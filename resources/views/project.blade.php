@@ -25,6 +25,9 @@
       <div class='panel-footer' id='like_project'>
         @component('component.like',['likable'=>$project,'target'=>'like_project']) @endcomponent
       </div>
+      <div class='panel-footer' id='follow_project'>
+        @component('component.follow',['followable'=>$project,'target'=>'follow_project']) @endcomponent
+      </div>
     </div>
 
     <div class='panel panel-default'>

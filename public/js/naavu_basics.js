@@ -43,6 +43,38 @@ $(document).ready(function(){
         });
     });
 
+    //Set up following
+    $('body').on('click','.follow',function(){
+        var followable_type = $(this).attr('followable_type');
+        var followable_id = $(this).attr('followable_id');
+        var target = $(this).attr('target');
+
+        $.ajax({
+          type:'post',
+          url:'/follow',
+          data:{followable_type:followable_type,followable_id:followable_id,target:target},
+          success:function(data){
+            $('#'+target).html(data);
+          }
+        });
+    });
+
+    //Set up unfollowing
+    $('body').on('click','.unfollow',function(){
+        var followable_type = $(this).attr('followable_type');
+        var followable_id = $(this).attr('followable_id');
+        var target = $(this).attr('target');
+
+        $.ajax({
+          type:'post',
+          url:'/unfollow',
+          data:{followable_type:followable_type,followable_id:followable_id,target:target},
+          success:function(data){
+            $('#'+target).html(data);
+          }
+        });
+    });
+
 
 
   });

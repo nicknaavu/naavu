@@ -20,6 +20,12 @@ Route::get('/', function(){
   })->middleware('auth');
 Route::get('/home', 'HomeController@index');
 
+Route::get('/test', function(){
+
+return "HEllo!";
+
+
+});
 
 //SKILLS
 Route::get('/edit_skill','skills@edit_skill')->name('edit_skill');
@@ -79,6 +85,10 @@ Route::post('/add_project_comment','comments@add_project_comment')->name('add_pr
 //LIKES
 Route::post('/like','likes@like')->name('like');
 Route::post('/unlike','likes@unlike')->name('unlike');
+
+//FOLLOWS
+Route::post('/follow','follows@follow')->name('follow');
+Route::post('/unfollow','follows@unfollow')->name('follow');
 
 //AUTH
 Auth::routes();
