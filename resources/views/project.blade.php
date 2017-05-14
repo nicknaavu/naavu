@@ -36,7 +36,7 @@
       </div>
       <div class='panel-body'>
         @foreach($project->users as $user)
-          <a href="/profile/{{$user->id}}">{{$user->name}}</a>
+              @component('component.user_link',['user'=>$user]) @endcomponent
           @if($user->pivot->status > 0) {{-- If the user is a team rep, indicate so  --}}
             Team rep
           @endif

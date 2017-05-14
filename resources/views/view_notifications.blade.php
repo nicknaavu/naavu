@@ -13,15 +13,23 @@
           @foreach(Auth::user()->recipient_notifications as $notification)
 
             @if($notification->type ==1)
-              <a href='{{route('profile_by_id',['id'=>$notification->sender->id])}}'>{{$notification->sender->name}}</a>
+              @component('component.user_link',['user'=>$notification->sender]) @endcomponent
               has invited you to join the project
-              <a href="{{route('project',['id'=>$notification->notifiable->id])}}">{{$notification->notifiable->project}}</a>
+              @component('component.project_link',['project'=>$notification->notifiable]) @endcomponent
               <a href="{{route('accept_invitation',['id'=>$notification->id])}}" class='btn btn-default'>Join</a>
             @elseif($notification->type == 2)
-              <a href='{{route('profile_by_id',['id'=>$notification->sender->id])}}'>{{$notification->sender->name}}</a>
+              @component('component.user_link',['user'=>$notification->sender]) @endcomponent
               has invited you to be a rep for the project
-              <a href="{{route('project',['id'=>$notification->notifiable->id])}}">{{$notification->notifiable->project}}</a>
+              @component('component.project_link',['project'=>$notification->notifiable]) @endcomponent
               <a href="{{route('accept_invitation',['id'=>$notification->id])}}" class='btn btn-default'>Accept</a>
+            @elseif($notification->type == 3)
+              @component('component.user_link',['user'=>$notification->sender]) @endcomponent
+              has a new post
+              @if($project = $notification->notifiable->project)
+                on @component('component.project_link',['project'=>$project]) @endcomponent
+              @endif
+              :
+              @component('component.post_link',['post'=>$notification->notifiable]) @endcomponent
             @endif
             <hr />
           @endforeach

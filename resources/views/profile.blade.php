@@ -18,6 +18,9 @@
       <div class='panel-body'>
         {{$user->about}}
       </div>
+      <div class='panel-footer' id='follow_user'>
+        @component('component.follow',['followable'=>$user,'target'=>'follow_user']) @endcomponent
+      </div>
       @if(Auth::user()->id !== $user->id AND count(Auth::user()->projects) > 0)
         <div class='panel-footer'>
           <form role='form' class="form-horizontal" method='post' action='{{route('invite_to_project')}}'>

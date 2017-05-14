@@ -34,4 +34,9 @@ class Post extends Model
     {
       return $this->morphMany('App\Follow','followable');
     }
+
+  public function notifications()
+    {
+      return $this->morphMany('App\Notification','notifiable');
+    }
 }

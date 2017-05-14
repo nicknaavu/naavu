@@ -12,6 +12,7 @@
 */
 
 Use App\User;
+Use App\Post;
 Use Illuminate\Http\Request;
 
 //HOME
@@ -20,10 +21,16 @@ Route::get('/', function(){
   })->middleware('auth');
 Route::get('/home', 'HomeController@index');
 
-Route::get('/test', function(){
+Route::get('/test/{id}', function($id){
 
-return "HEllo!";
+$post = Post::find($id);
 
+$project_followers = $post->project->follows->pluck('follower');
+$user_followers = $post->user->follows->pluck('follower');
+$followers = $project_followers->merge($user_followers)->unique();
+
+
+return $followers;
 
 });
 
