@@ -25,6 +25,9 @@
       <div class='panel-footer' id='like_project'>
         @component('component.like',['likable'=>$project,'target'=>'like_project']) @endcomponent
       </div>
+      <div class='panel-footer' id='follow_project'>
+        @component('component.follow',['followable'=>$project,'target'=>'follow_project']) @endcomponent
+      </div>
     </div>
 
     <div class='panel panel-default'>
@@ -33,7 +36,7 @@
       </div>
       <div class='panel-body'>
         @foreach($project->users as $user)
-          <a href="/profile/{{$user->id}}">{{$user->name}}</a>
+              @component('component.user_link',['user'=>$user]) @endcomponent
           @if($user->pivot->status > 0) {{-- If the user is a team rep, indicate so  --}}
             Team rep
           @endif

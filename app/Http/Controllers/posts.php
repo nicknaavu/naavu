@@ -7,6 +7,7 @@ Use Auth;
 Use App\User;
 Use App\Project;
 Use App\Post;
+Use App\Events\NewPost;
 
 class posts extends Controller
 {
@@ -23,6 +24,9 @@ class posts extends Controller
           foreach(['title','body','project_id'] as $field){$post->$field = $request->$field;}
           $post->user_id = Auth::id();
           $post->save();
+
+          //Trigger event
+          event(new NewPost($post));
 
           return redirect()->route('post',[
             'id'=>$post->id

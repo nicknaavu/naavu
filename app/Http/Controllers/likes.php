@@ -8,8 +8,6 @@ Use App\User;
 Use App\Project;
 Use Auth;
 
-
-
 class likes extends Controller
 {
     public function like(Request $request)
