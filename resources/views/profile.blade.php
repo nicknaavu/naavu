@@ -114,7 +114,7 @@
         @if(count($user->posts) > 0)
           @foreach($user->posts as $post)
             <div>
-              <a href="/post/{{$post->id}}"><h4>{{$post->title}}</h4></a>
+              <a href="{{ route('post',['post_id'=>$post->id])   }}"><h4>{{$post->title}}</h4></a>
               {{$post->body}}
             </div>
           @endforeach

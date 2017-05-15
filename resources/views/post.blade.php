@@ -9,6 +9,9 @@
         @if($post->project != '')
           <a href="{{ route('project',['id'=>$post->project->id]) }}">{{$post->project->project}}</a>
         @endif
+        @if($post->user->id == Auth::id())
+          <a class='btn btn-danger' href="{{ route('delete_post',['post_id'=>$post->id])}}">Delete post</a>
+        @endif
       </div>
       <div class='panel-body'>
         {{$post->body}}

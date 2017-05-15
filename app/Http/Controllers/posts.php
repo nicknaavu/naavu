@@ -33,10 +33,16 @@ class posts extends Controller
             ]);
         }
 
-    public function post($id)
+    public function post($post_id)
       {
         return view('post',[
-          'post'=>Post::find($id)
+          'post'=>Post::find($post_id)
         ]);
+      }
+
+    public function delete_post($post_id)
+      {
+        Post::destroy($post_id);
+        return redirect('profile');
       }
 }

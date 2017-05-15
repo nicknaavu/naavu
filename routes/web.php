@@ -15,24 +15,12 @@ Use App\User;
 Use App\Post;
 Use Illuminate\Http\Request;
 
+
 //HOME
 Route::get('/', function(){
     return redirect('/profile');
   })->middleware('auth');
 Route::get('/home', 'HomeController@index');
-
-Route::get('/test/{id}', function($id){
-
-$post = Post::find($id);
-
-$project_followers = $post->project->follows->pluck('follower');
-$user_followers = $post->user->follows->pluck('follower');
-$followers = $project_followers->merge($user_followers)->unique();
-
-
-return $followers;
-
-});
 
 //SKILLS
 Route::get('/edit_skill','skills@edit_skill')->name('edit_skill');
@@ -80,10 +68,11 @@ Route::post('/invite_to_rep','notifications@invite_to_rep')->name('invite_to_rep
 Route::get('/accept_invitation','notifications@accept_invitation')->name('accept_invitation');
 
 //POSTS
-Route::get('/post/{id}','posts@post')->name('post');
+Route::get('/post/{post_id}','posts@post')->name('post');
 Route::get('/compose_post/{id}','posts@compose_post')->name('compose_post_with_id');
 Route::get('/compose_post','posts@compose_post')->name('compose_post');
 Route::post('/create_post','posts@create_post')->name('create_post');
+Route::get('/delete_post/{post_id}','posts@delete_post')->name('delete_post')->middleware('CheckPostOwner');
 
 //COMMENTS
 Route::post('/add_post_comment','comments@add_post_comment')->name('add_post_comment');
