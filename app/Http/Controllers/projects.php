@@ -118,4 +118,9 @@ class projects extends Controller
     Return Auth::user()->projects;
   }
 
+  public function step_down($project_id)
+    {
+      Auth::user()->projects()->updateExistingPivot($project_id,['status'=>0]);
+      return redirect()->route('edit_projects');
+    }
 }

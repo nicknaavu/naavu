@@ -53,6 +53,7 @@ Route::get('/edit_project_skills/{id}','projects@edit_project_skills')->name('ed
 Route::post('/update_project','projects@update_project')->name('update_project');
 Route::post('/update_project_skill','projects@update_project_skill')->name('update_project_skill');
 Route::post('/leave_project','projects@leave_project')->name('leave_project');
+Route::get('/step_down/{project_id}','projects@step_down')->name('step_down');
 
 //MESSAGES
 Route::get('/compose_message','messaging@compose_message')->name('compose_message');
