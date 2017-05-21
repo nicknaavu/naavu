@@ -28,7 +28,7 @@ class notifications extends Controller
       $project = Project::find($request->invitation_project);
       $project->notifications()->save($notification);
 
-      return $notification;
+      return redirect()->route('edit_team',['project'=>$project]);
     }
 
     public function invite_to_rep(Request $request)
@@ -49,7 +49,7 @@ class notifications extends Controller
       $project = Project::find($request->invitation_project);
       $project->notifications()->save($notification);
 
-      return $notification;
+      return redirect()->route('edit_team',['project'=>$project]);
     }
 
   public function view_notifications()

@@ -12,7 +12,10 @@
       <div id='project_{{$project->id}}'>
         <a href="/project/{{$project->id}}"><h4>{{$project->project}}</h4></a>
         {{$project->description}}<br/s>
-        <button class='leave_project' project_id='{{$project->id}}'>Leave project</button>
+        <button class='leave_project btn btn-danger' project_id='{{$project->id}}'>Leave project</button>
+        @if($project->pivot->status > 0)
+          <a class='btn btn-danger' href="{{ route('step_down',['project_id'=>$project->id]) }}">Step down as rep</a>
+        @endif
       </div>
     @endforeach
   @else
