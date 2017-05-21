@@ -7,6 +7,7 @@ Use Auth;
 Use App\User;
 Use App\Project;
 Use App\Post;
+Use App\Events\NewPost;
 
 class posts extends Controller
 {
@@ -24,15 +25,24 @@ class posts extends Controller
           $post->user_id = Auth::id();
           $post->save();
 
+          //Trigger event
+          event(new NewPost($post));
+
           return redirect()->route('post',[
             'id'=>$post->id
             ]);
         }
 
-    public function post($id)
+    public function post($post_id)
       {
         return view('post',[
-          'post'=>Post::find($id)
+          'post'=>Post::find($post_id)
         ]);
+      }
+
+    public function delete_post($post_id)
+      {
+        Post::destroy($post_id);
+        return redirect('profile');
       }
 }

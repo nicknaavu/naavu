@@ -63,6 +63,16 @@ class User extends Authenticatable
           return $this->hasMany('App\Message');
       }
 
+    public function likes()
+      {
+          return $this->hasMany('App\Like');
+      }
+
+    public function follows()
+      {
+        return $this->morphMany('App\Follow','followable');
+      }
+
     public function posts()
       {
           return $this->hasMany('App\Post');
@@ -72,5 +82,4 @@ class User extends Authenticatable
       {
           return $this->hasMany('App\Comment');
       }
-
 }

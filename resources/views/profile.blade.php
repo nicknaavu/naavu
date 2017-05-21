@@ -10,13 +10,16 @@
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h1><strong>{{$user->name}}</strong>
-        @if(Auth::user()->id == $user->id)
+        @if(Auth::id() == $user->id)
           <a href="{{route('edit_profile')}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
         @endif
         </h1>
       </div>
       <div class='panel-body'>
         {{$user->about}}
+      </div>
+      <div class='panel-footer' id='follow_user'>
+        @component('component.follow',['followable'=>$user,'target'=>'follow_user']) @endcomponent
       </div>
       @if(Auth::user()->id !== $user->id AND count(Auth::user()->projects) > 0)
         <div class='panel-footer'>
@@ -111,7 +114,7 @@
         @if(count($user->posts) > 0)
           @foreach($user->posts as $post)
             <div>
-              <a href="/post/{{$post->id}}"><h4>{{$post->title}}</h4></a>
+              <a href="{{ route('post',['post_id'=>$post->id])   }}"><h4>{{$post->title}}</h4></a>
               {{$post->body}}
             </div>
           @endforeach

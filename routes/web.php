@@ -12,14 +12,15 @@
 */
 
 Use App\User;
+Use App\Post;
 Use Illuminate\Http\Request;
+
 
 //HOME
 Route::get('/', function(){
     return redirect('/profile');
   })->middleware('auth');
 Route::get('/home', 'HomeController@index');
-
 
 //SKILLS
 Route::get('/edit_skill','skills@edit_skill')->name('edit_skill');
@@ -35,6 +36,7 @@ Route::post('/delete_interest','interests@delete_interest')->name('delete_intere
 Route::get('/profile/{id}','public_pages@profile')->name('profile_by_id');
 Route::get('/profile','profile@profile')->name('profile');
 Route::get('/edit_profile','profile@edit_profile')->name('edit_profile');
+Route::get('edit_projects','profile@edit_projects')->name('edit_projects');
 Route::post('update_profile','profile@update_profile')->name('update_profile');
 
 //SEARCH AND MATCHING
@@ -50,6 +52,8 @@ Route::get('/edit_team/{id}','projects@edit_team')->name('edit_team');
 Route::get('/edit_project_skills/{id}','projects@edit_project_skills')->name('edit_project_skills');
 Route::post('/update_project','projects@update_project')->name('update_project');
 Route::post('/update_project_skill','projects@update_project_skill')->name('update_project_skill');
+Route::post('/leave_project','projects@leave_project')->name('leave_project');
+Route::get('/step_down/{project_id}','projects@step_down')->name('step_down');
 
 //MESSAGES
 Route::get('/compose_message','messaging@compose_message')->name('compose_message');
@@ -65,14 +69,23 @@ Route::post('/invite_to_rep','notifications@invite_to_rep')->name('invite_to_rep
 Route::get('/accept_invitation','notifications@accept_invitation')->name('accept_invitation');
 
 //POSTS
-Route::get('/post/{id}','posts@post')->name('post');
+Route::get('/post/{post_id}','posts@post')->name('post');
 Route::get('/compose_post/{id}','posts@compose_post')->name('compose_post_with_id');
 Route::get('/compose_post','posts@compose_post')->name('compose_post');
 Route::post('/create_post','posts@create_post')->name('create_post');
+Route::get('/delete_post/{post_id}','posts@delete_post')->name('delete_post')->middleware('CheckPostOwner');
 
 //COMMENTS
 Route::post('/add_post_comment','comments@add_post_comment')->name('add_post_comment');
 Route::post('/add_project_comment','comments@add_project_comment')->name('add_project_comment');
+
+//LIKES
+Route::post('/like','likes@like')->name('like');
+Route::post('/unlike','likes@unlike')->name('unlike');
+
+//FOLLOWS
+Route::post('/follow','follows@follow')->name('follow');
+Route::post('/unfollow','follows@unfollow')->name('follow');
 
 //AUTH
 Auth::routes();

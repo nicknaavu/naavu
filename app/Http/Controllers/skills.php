@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 Use Auth;
 Use DB;
 Use App\Skill;
+Use Route;
+
 
 class skills extends Controller
 {

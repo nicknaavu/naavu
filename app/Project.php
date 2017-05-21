@@ -40,4 +40,14 @@ class Project extends Model
     {
         return $this->hasMany('App\Post');
     }
+
+  public function likes()
+    {
+      return $this->morphMany('App\Like','likable');
+    }
+
+  public function follows()
+    {
+      return $this->morphMany('App\Follow','followable');
+    }
 }

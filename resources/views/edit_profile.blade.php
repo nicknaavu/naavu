@@ -1,28 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.edit_profile')
 
-@section('style')
-<link href="{{ asset('css/form.css') }}" rel="stylesheet">
-@endsection
-
-@section('content')
-<div class='container'>
-
-
-
-  <div class='row'>
-    <div class='col-md-8 col-md-offset-2'>
-      <div class='panel panel-default'>
-        <div class='panel-heading'>
-
-          <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#">Basic info</a></li>
-            <li role="presentation"><a href="edit_skill">Skills</a></li>
-            <li role="presentation"><a href="edit_interest">Interests</a></li>
-          </ul>
-
-        </div>
-        <div class='panel-body'>
-          <form class='form-horizontal' role='form' method='POST' action="update_profile">
+@section('controls')
+    <form class='form-horizontal' role='form' method='POST' action="update_profile">
             {{ csrf_field() }}
             <h3>Basic information</h3>
 
@@ -60,9 +39,4 @@
             </div>
 
           </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 @endsection

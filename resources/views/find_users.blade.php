@@ -9,8 +9,8 @@
       </div>
       <div class="panel-body">
         @foreach($users as $user)
-          <a href="{{ route('profile_by_id',['id'=>$user->id])    }}">{{$user->name}}</a><hr>
-
+          @component('component.user_link',['user'=>$user]) @endcomponent
+          <hr>
         @endforeach
       </div>
     </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 Use Auth;
 Use DB;
+Use Route;
+
 
 class profile extends Controller
 {
@@ -43,4 +45,11 @@ class profile extends Controller
 
     return redirect('profile');
   }
+
+  public function edit_projects(Request $request)
+    {
+      return view('edit_projects',[
+        'user'=>Auth::user()
+      ]);
+    }
 }
