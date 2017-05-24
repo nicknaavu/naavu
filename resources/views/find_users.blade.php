@@ -4,8 +4,18 @@
 <div class="container">
   <div class='row'>
     <div class='panel panel-default'>
+      <div class='panel-body'>
+        <form role='form' method='get' action='find_users'>
+          <input name='str'>
+          <button class='btn btn-default' type='submit'>Go</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='panel panel-default'>
       <div class='panel-heading'>
-        Find users
+        <h4>Matching users</h4>
       </div>
       <div class="panel-body">
         @foreach($users as $user)
