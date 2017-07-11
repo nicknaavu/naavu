@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use Auth;
+use App\User;
 Use DB;
 Use Route;
 
@@ -18,9 +19,13 @@ class profile extends Controller
 
   public function profile()
     {
+      //Get user
+      $user = Auth::user();
+
+
       return view('profile',[
-        'user' => Auth::user()
-  ]);
+        'user' => $user
+        ]);
     }
 
   public function edit_profile(Request $request)

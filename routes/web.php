@@ -57,7 +57,7 @@ Route::get('/step_down/{project_id}','projects@step_down')->name('step_down');
 
 //MESSAGES
 Route::get('/compose_message','messaging@compose_message')->name('compose_message');
-Route::post('/create_thread','messaging@create_thread')->name('create_thread');
+Route::post('/create_thread','messaging@creat3e_thread')->name('create_thread');
 Route::get('/view_threads','messaging@view_threads')->name('view_threads');
 Route::get('/thread/{id}','messaging@thread');
 Route::post('thread/add_message','messaging@add_message')->name('add_message');
@@ -85,7 +85,10 @@ Route::post('/unlike','likes@unlike')->name('unlike');
 
 //FOLLOWS
 Route::post('/follow','follows@follow')->name('follow');
-Route::post('/unfollow','follows@unfollow')->name('follow');
+Route::post('/unfollow','follows@unfollow')->name('unfollow');
+
+//REVIEWS
+Route::post('/leave_review','reviews@leave_review')->name('leave_review');
 
 //AUTH
 Auth::routes();
