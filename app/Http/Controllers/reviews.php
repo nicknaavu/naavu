@@ -17,6 +17,7 @@ class reviews extends Controller
       //Input information
       $review->subject = $request->subject;
       $review->body = $request->body;
+      $review->project_id = $request->project_id;
       $review->reviewer_id = Auth::id();
       $review->reviewee_id = $request->reviewee_id;
 

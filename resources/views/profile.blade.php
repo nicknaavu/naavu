@@ -60,7 +60,7 @@
               Leave a review for {{$user->name}}:
             </label>
             <div class='col-md-4'>
-              <select class='form-control' name='review' id='review'>
+              <select class='form-control' name='project_id' id='project_id'>
                 @foreach(Auth::user()->projects->whereIn('id',$user->projects->pluck('id')) as $project)
                   <option value='{{$project->id}}'>
                     {{$project->project}}
@@ -177,6 +177,7 @@
             <div>
               <h4>{{$review->subject}}</h4>
               from: @component('component.user_link',['user'=>$review->reviewer]) @endcomponent <br/>
+              for project: @component('component.project_link',['project'=>$review->project]) @endcomponent <br/>
               {{$review->body}}
             </div>
           @endforeach

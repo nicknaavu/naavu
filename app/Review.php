@@ -14,12 +14,17 @@ class Review extends Model
     ];
 
   public function reviewer()
-  {
+    {
     return $this->belongsTo('App\User','reviewer_id');
-  }
+    }
 
   public function reviewee()
-  {
+    {
     return $this->belongsTo('App\User','reviewee_id');
-  }
+    }
+  
+  public function project()
+    {
+      return $this->belongsTo('App\Project');
+    }
 }

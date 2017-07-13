@@ -44,6 +44,6 @@ class CreateReviews extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('reviews');
     }
 }
