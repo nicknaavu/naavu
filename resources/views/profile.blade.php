@@ -5,22 +5,26 @@
 @endsection
 
 @section('content')
+
 <div class='container'>
   <div class='row'>
     <div class='panel panel-default'>
-      <div class='panel-heading'>
+      <div class='panel-heading clearfix'>
         <h1><strong>{{$user->name}}</strong>
         @if(Auth::id() == $user->id)
-          <a href="{{route('edit_profile')}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+          <a class='btn btn-default pull-right' href="{{route('edit_profile')}}">edit profile</a>
         @endif
         </h1>
       </div>
       <div class='panel-body'>
         {{$user->about}}
       </div>
+
+      @if(Auth::check())
       <div class='panel-footer' id='follow_user'>
         @component('component.follow',['followable'=>$user,'target'=>'follow_user']) @endcomponent
       </div>
+
       @if(Auth::user()->id !== $user->id AND count(Auth::user()->projects) > 0)
         <div class='panel-footer'>
           <form role='form' class="form-horizontal" method='post' action='{{route('invite_to_project')}}'>
@@ -50,11 +54,25 @@
           </form>
         </div>
       @endif
+
+
+      @if(count($shared_projects) > 0)
+          @if(count($shared_projects->where('reviewed',0)) > 0)
+          <div class='panel-footer'>
+            <a href='{{ route('compose_review',['id'=>$user->id])  }}'>Leave a review</a>
+          </div>
+          @endif
+        @endif
+       @endif
     </div>
 
+
     <div class='panel panel-default'>
-      <div class='panel-heading'>
+      <div class='panel-heading clearfix'>
         <h3>skills</h3>
+        @if(Auth::id() == $user->id)
+          <a class='btn btn-default pull-right' href="{{route('edit_skill')}}">edit skills</a>
+        @endif
       </div>
       <div class='panel-body'>
         @if(count($user->skills) > 0)
@@ -71,8 +89,11 @@
     </div>
 
     <div class='panel panel-default'>
-      <div class='panel-heading'>
+      <div class='panel-heading clearfix'>
         <h3>interests</h3>
+        @if(Auth::id() == $user->id)
+          <a class='btn btn-default pull-right' href="{{route('edit_interest')}}">edit interests</a>
+        @endif
       </div>
       <div class='panel-body'>
         @if(count($user->interests) > 0)
@@ -89,8 +110,11 @@
     </div>
 
     <div class='panel panel-default'>
-      <div class='panel-heading'>
+      <div class='panel-heading clearfix'>
         <h3>projects</h3>
+        @if(Auth::id() == $user->id)
+          <a class='btn btn-default pull-right' href="{{route('edit_projects')}}">edit projects</a>
+        @endif
       </div>
       <div class='panel-body'>
         @if(count($user->projects) > 0)
@@ -124,6 +148,32 @@
       </div>
     </div>
 
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h3>reviews</h3>
+      </div>
+      <div class='panel-body'>
+        @if(count($user->reviews) > 0)
+          @foreach($user->reviews as $review)
+
+            <div class='clearfix'>
+              <h4>{{$review->subject}}</h4>
+              from: @component('component.user_link',['user'=>$review->reviewer]) @endcomponent <br/>
+              for project: @component('component.project_link',['project'=>$review->project]) @endcomponent <br/>
+              {{$review->body}}<br/>
+              @if(Auth::id() == $review->reviewer->id)
+                <a class='btn btn-default pull-right' href='{{ route('edit_review',['id'=>$review->id]) }}'>edit</a>
+              @endif
+
+            </div>
+
+            <hr/>
+          @endforeach
+        @else
+          No reviews yet!
+        @endif
+      </div>
+    </div>
 
   </div>
 </div>

@@ -50,4 +50,9 @@ class Project extends Model
     {
       return $this->morphMany('App\Follow','followable');
     }
+    
+  public function reviews()
+    {
+      return $this->hasMany('App\Review');
+    }
 }

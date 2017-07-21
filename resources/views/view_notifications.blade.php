@@ -9,7 +9,7 @@
         <div class='panel-heading'>
           <h3>Notifications</h3>
         </div>
-        <div class='panel-body'>
+        <div class='panel-body clearfix'>
           @if(count(Auth::user()->recipient_notifications) > 0)
             @foreach(Auth::user()->recipient_notifications as $notification)
 
@@ -31,8 +31,16 @@
                 @endif
                 :
                 @component('component.post_link',['post'=>$notification->notifiable]) @endcomponent
+              @elseif($notification->type == 9)
+                  @component('component.user_link',['user'=>$notification->sender]) @endcomponent
+                  has left a review for you on
+                  @component('component.project_link',['project'=>$notification->notifiable->project]) @endcomponent
+                  :
+                  {{$notification->notifiable->subject}}
               @endif
+                  <a class='btn btn-danger pull-right' href='#'>Clear</a>
               <hr />
+
             @endforeach
           @else
             No notifications!

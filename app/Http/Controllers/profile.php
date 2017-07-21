@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use Auth;
+use App\User;
 Use DB;
 Use Route;
 
@@ -18,9 +19,17 @@ class profile extends Controller
 
   public function profile()
     {
-      return view('profile',[
-        'user' => Auth::user()
-  ]);
+      //Get user
+      $user = Auth::user();
+
+      //Set projects to review blank
+      $shared_projects = NULL;
+
+      //Package variables
+      $vars = compact('user','shared_projects');
+
+      //Return view
+      return view('profile')->with($vars);
     }
 
   public function edit_profile(Request $request)

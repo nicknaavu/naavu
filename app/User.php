@@ -47,6 +47,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Notification','sender_id');
       }
 
+    public function reviews()
+      {
+        return $this->hasMany('App\Review','reviewee_id');
+      }
 
     public function threads()
       {

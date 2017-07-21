@@ -13,8 +13,15 @@
 
 Use App\User;
 Use App\Post;
+USe App\Review;
+Use App\Notification;
 Use Illuminate\Http\Request;
 
+
+Route::get('test',function(){
+  return Notification::all();
+
+});
 
 //HOME
 Route::get('/', function(){
@@ -85,7 +92,14 @@ Route::post('/unlike','likes@unlike')->name('unlike');
 
 //FOLLOWS
 Route::post('/follow','follows@follow')->name('follow');
-Route::post('/unfollow','follows@unfollow')->name('follow');
+Route::post('/unfollow','follows@unfollow')->name('unfollow');
+
+//REVIEWS
+Route::get('/compose_review/{id}','reviews@compose_review')->name('compose_review');
+Route::post('/leave_review','reviews@leave_review')->name('leave_review');
+Route::get('/edit_review/{id}','reviews@edit_review')->name('edit_review');
+Route::post('/update_review','reviews@update_review')->name('update_review');
+Route::get('/delete_review/{id}','reviews@delete_review')->name('delete_review');
 
 //AUTH
 Auth::routes();

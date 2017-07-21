@@ -13,7 +13,8 @@ class search extends Controller
     {
     if ($str = $request->str)
       {
-        $users = User::where('name',"LIKE","%$str%")->get();      
+        $users = User::where('name',"LIKE","%$str%")
+        ->get();
       }
     else
       {
@@ -23,6 +24,7 @@ class search extends Controller
         'users'=>$users
         ]);
     }
+
     public function find_projects()
     {
       return view('find_projects',[

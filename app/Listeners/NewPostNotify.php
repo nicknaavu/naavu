@@ -58,7 +58,7 @@ class NewPostNotify
           //Associate with recipient
           $notification->recipient()->associate($recipient);
 
-          //Connect to project and save
+          //Connect to post and save
           $post->notifications()->save($notification);
         }
     }
