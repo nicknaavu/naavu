@@ -22,10 +22,14 @@ class profile extends Controller
       //Get user
       $user = Auth::user();
 
+      //Set projects to review blank
+      $shared_projects = NULL;
 
-      return view('profile',[
-        'user' => $user
-        ]);
+      //Package variables
+      $vars = compact('user','shared_projects');
+
+      //Return view
+      return view('profile')->with($vars);
     }
 
   public function edit_profile(Request $request)

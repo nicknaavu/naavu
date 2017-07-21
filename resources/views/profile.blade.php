@@ -5,22 +5,26 @@
 @endsection
 
 @section('content')
+
 <div class='container'>
   <div class='row'>
     <div class='panel panel-default'>
-      <div class='panel-heading'>
+      <div class='panel-heading clearfix'>
         <h1><strong>{{$user->name}}</strong>
         @if(Auth::id() == $user->id)
-          <a href="{{route('edit_profile')}}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+          <a class='btn btn-default pull-right' href="{{route('edit_profile')}}">edit profile</a>
         @endif
         </h1>
       </div>
       <div class='panel-body'>
         {{$user->about}}
       </div>
+
+      @if(Auth::check())
       <div class='panel-footer' id='follow_user'>
         @component('component.follow',['followable'=>$user,'target'=>'follow_user']) @endcomponent
       </div>
+
       @if(Auth::user()->id !== $user->id AND count(Auth::user()->projects) > 0)
         <div class='panel-footer'>
           <form role='form' class="form-horizontal" method='post' action='{{route('invite_to_project')}}'>
@@ -50,54 +54,25 @@
           </form>
         </div>
       @endif
-      <div class='panel-footer'>
-        <form role='form' class="form-horizontal" method='post' action='{{route('leave_review')}}'>
-          {{csrf_field()}}
-          <input type='hidden' name='reviewee_id' value='{{$user->id}}'/>
 
-          <div class="form-group">
-            <label for='invitation_project' class='col-md-2 control-label'>
-              Leave a review for {{$user->name}}:
-            </label>
-            <div class='col-md-4'>
-              <select class='form-control' name='project_id' id='project_id'>
-                @foreach(Auth::user()->projects->whereIn('id',$user->projects->pluck('id')) as $project)
-                  <option value='{{$project->id}}'>
-                    {{$project->project}}
-                  </option>
-                @endforeach
-              </select>
-            </div>
+
+      @if(count($shared_projects) > 0)
+          @if(count($shared_projects->where('reviewed',0)) > 0)
+          <div class='panel-footer'>
+            <a href='{{ route('compose_review',['id'=>$user->id])  }}'>Leave a review</a>
           </div>
-
-          <div class='form-group'>
-            <label for='subject' class='col-md-4 control-label'>Subject</label>
-            <div class='col-md-6'>
-              <input class='form-control' name='subject' id='subject' required>
-            </div>
-          </div>
-
-          <div class='form-group'>
-            <label for='body' class='col-md-4 control-label'>Body</label>
-            <div class='col-md-6'>
-              <textarea class='form-control vertical' name='body' id='body' required></textarea>
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <div class='col-md-4 col-md-offset-2'>
-              <input type='submit' class='btn btn-default' value='leave review'>
-            </div>
-          </div>
-
-        </form>
-      </div>
+          @endif
+        @endif
+       @endif
     </div>
 
+
     <div class='panel panel-default'>
-      <div class='panel-heading'>
+      <div class='panel-heading clearfix'>
         <h3>skills</h3>
+        @if(Auth::id() == $user->id)
+          <a class='btn btn-default pull-right' href="{{route('edit_skill')}}">edit skills</a>
+        @endif
       </div>
       <div class='panel-body'>
         @if(count($user->skills) > 0)
@@ -114,8 +89,11 @@
     </div>
 
     <div class='panel panel-default'>
-      <div class='panel-heading'>
+      <div class='panel-heading clearfix'>
         <h3>interests</h3>
+        @if(Auth::id() == $user->id)
+          <a class='btn btn-default pull-right' href="{{route('edit_interest')}}">edit interests</a>
+        @endif
       </div>
       <div class='panel-body'>
         @if(count($user->interests) > 0)
@@ -132,8 +110,11 @@
     </div>
 
     <div class='panel panel-default'>
-      <div class='panel-heading'>
+      <div class='panel-heading clearfix'>
         <h3>projects</h3>
+        @if(Auth::id() == $user->id)
+          <a class='btn btn-default pull-right' href="{{route('edit_projects')}}">edit projects</a>
+        @endif
       </div>
       <div class='panel-body'>
         @if(count($user->projects) > 0)
@@ -174,12 +155,19 @@
       <div class='panel-body'>
         @if(count($user->reviews) > 0)
           @foreach($user->reviews as $review)
-            <div>
+
+            <div class='clearfix'>
               <h4>{{$review->subject}}</h4>
               from: @component('component.user_link',['user'=>$review->reviewer]) @endcomponent <br/>
               for project: @component('component.project_link',['project'=>$review->project]) @endcomponent <br/>
-              {{$review->body}}
+              {{$review->body}}<br/>
+              @if(Auth::id() == $review->reviewer->id)
+                <a class='btn btn-default pull-right' href='{{ route('edit_review',['id'=>$review->id]) }}'>edit</a>
+              @endif
+
             </div>
+
+            <hr/>
           @endforeach
         @else
           No reviews yet!

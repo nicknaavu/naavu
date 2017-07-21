@@ -16,10 +16,15 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
-        
+
         'App\Events\NewPost' => [
             'App\Listeners\NewPostNotify'
+        ],
+
+        'App\Events\NewReview' => [
+            'App\Listeners\NewReviewNotify'
         ]
+
     ];
 
     /**

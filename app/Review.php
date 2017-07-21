@@ -22,9 +22,14 @@ class Review extends Model
     {
     return $this->belongsTo('App\User','reviewee_id');
     }
-  
+
   public function project()
     {
       return $this->belongsTo('App\Project');
+    }
+
+  public function notifications()
+    {
+      return $this->morphMany('App\Notification','notifiable');
     }
 }

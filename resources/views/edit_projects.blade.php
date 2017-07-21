@@ -5,7 +5,7 @@
 @endsection
 
 @section('controls')
-  <h3>Projects</h3>
+  <h3>Projects</h3><br/>
 
   @if(count($user->projects) > 0)
     @foreach($user->projects as $project)
@@ -19,6 +19,7 @@
       </div>
     @endforeach
   @else
-    No projects yet!
+    No projects yet! <br/>
+    <a href='{{ route('new_project') }}'>Create a project</a>
   @endif
 @endsection
