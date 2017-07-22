@@ -22,7 +22,7 @@
       <div class='panel-footer'>
         @if(count($post->comments) > 0)
           @foreach($post->comments as $comment)
-            <a href="{{ route('profile',['id'=>$comment->commenter->id]) }}">{{$comment->commenter->name}}</a>
+            @component('component.user_link',['user'=>$comment->commenter]) @endcomponent
             <br/>
             {{$comment->body}}
             <hr>

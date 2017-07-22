@@ -4,12 +4,21 @@ $.ajaxSetup({
   }
 });
 
+//To execute on startup
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+
 $(document).ready(function(){
     //Set up clickable
     $('.clickable').click(function(){
       window.location.href = $(this).attr('target');
     });
 
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+        $('[data-toggle="popover"]').on('click', function(e) {e.preventDefault(); return true;});
+      });
 
     //Set up liking
     $('body').on('click','.like',function(){
