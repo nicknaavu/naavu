@@ -19,6 +19,8 @@ Use Illuminate\Http\Request;
 
 
 Route::get('test',function(){
+  return view('test');
+
 });
 
 //HOME

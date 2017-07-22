@@ -70,6 +70,9 @@
     <div class='panel panel-default'>
       <div class='panel-heading clearfix'>
         <h3>skills</h3>
+        @component('component.tooltip')
+          What practical skills or experiences could you bring to a project?
+        @endcomponent
         @if(Auth::id() == $user->id)
           <a class='btn btn-default pull-right' href="{{route('edit_skill')}}">edit skills</a>
         @endif
@@ -91,6 +94,9 @@
     <div class='panel panel-default'>
       <div class='panel-heading clearfix'>
         <h3>interests</h3>
+        @component('component.tooltip')
+        What kinds of projects or what types of work are you interested in considering?
+        @endcomponent
         @if(Auth::id() == $user->id)
           <a class='btn btn-default pull-right' href="{{route('edit_interest')}}">edit interests</a>
         @endif
@@ -112,6 +118,10 @@
     <div class='panel panel-default'>
       <div class='panel-heading clearfix'>
         <h3>projects</h3>
+        @component('component.tooltip')
+          Ways you’re already working on changing the world.
+        @endcomponent
+
         @if(Auth::id() == $user->id)
           <a class='btn btn-default pull-right' href="{{route('edit_projects')}}">edit projects</a>
         @endif
@@ -131,6 +141,9 @@
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h3>posts</h3>
+        @component('component.tooltip')
+          Update everyone about your projects. How are things going? What’s next? Successes? Challenges? Needs?
+        @endcomponent
       </div>
       <div class='panel-body'>
         @if(count($user->posts) > 0)
@@ -149,6 +162,9 @@
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h3>reviews</h3>
+        @component('component.tooltip')
+          Your work speaks for itself. But sometimes it’s nice when other people chime in too.
+        @endcomponent
       </div>
       <div class='panel-body'>
         @if(count($user->reviews) > 0)
@@ -157,7 +173,7 @@
             <div class='clearfix'>
               <h4>{{$review->subject}}</h4>
               from: @component('component.user_link',['user'=>$review->reviewer]) @endcomponent <br/>
-              for project: @component('component.project_link',['project'=>$review->project]) @endcomponent <br/>
+              for project: @component('component.project_link',['project'=>$review->project, 'form'=>'link']) @endcomponent <br/>
               {{$review->body}}<br/>
               @if(Auth::id() == $review->reviewer->id)
                 <a class='btn btn-default pull-right' href='{{ route('edit_review',['id'=>$review->id]) }}'>edit</a>
