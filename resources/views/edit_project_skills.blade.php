@@ -48,14 +48,14 @@
 
               <div class='form-group'>
                 <div class='col-md-6 col-md-offset-4'>
-                  <a href='javascript:delete_skill({{$skill->id}})'>Delete</a>
+                  <a href='javascript:delete_project_skill({{$skill->id}})'>Delete</a>
                 </div>
               </div>
             </div>
             @endforeach
 
             <div id='new_skills'></div>
-            
+
             @if(count($project->project_skills) == 0)
             <div id='new_skills_template' class=''>
               <div class="form-group">
@@ -99,6 +99,7 @@
 
             <div class="form-group">
               <div class="col-md-6 col-md-offset-4">
+                <a href='{{ route('project',['id'=>$project->id]) }}' class='btn btn-default'>back to {{$project->project}}</a>
                 <button type="submit" class="btn btn-primary">
                   Save
                 </button>

@@ -111,6 +111,11 @@ class projects extends Controller
         ]));
   }
 
+  public function delete_project_skill(Request $request)
+    {
+      Project_skill::destroy($request->id);
+    }
+
   public function leave_project(Request $request)
   {
     Auth::user()->projects()->detach($request->project_id);

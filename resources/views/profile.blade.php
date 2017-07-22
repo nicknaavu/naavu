@@ -17,7 +17,7 @@
         </h1>
       </div>
       <div class='panel-body'>
-        {{$user->about}}
+        <?php echo create_links($user->about) ?>
       </div>
 
       @if(Auth::check())
@@ -119,10 +119,8 @@
       <div class='panel-body'>
         @if(count($user->projects) > 0)
           @foreach($user->projects as $project)
-            <div>
-              <a href="/project/{{$project->id}}"><h4>{{$project->project}}</h4></a>
-              {{$project->description}}
-            </div>
+            @component('component.project_link',['project'=>$project,'form'=>'full']) @endcomponent
+            <hr/>
           @endforeach
         @else
           No projects yet!

@@ -23,16 +23,16 @@
         </div>
         <div class='panel-body'>
           @foreach($project->users as $user)
-            <a href="{{route('profile_by_id',['id'=>$user->id])}}">{{$user->name}}</a>
+            @component('component.user_link',['user'=>$user]) @endcomponent
 
               @if($user->pivot->status == 1)
-                Team rep
+                <span class='pull-right'>Team rep</span>
               @elseif($user->pivot->status == 0 AND $project->reps()->pluck('id')->containsStrict(Auth::id() ) )
-                <form role='form' method='post' action='{{ route('invite_to_rep')   }}'>
+                <form role='form' class='clearfix' method='post' action='{{ route('invite_to_rep')   }}'>
                   {{ csrf_field() }}
                   <input type='hidden' name='recipient_id' value='{{$user->id}}'>
                   <input type='hidden' name='invitation_project' value='{{$project->id}}'>
-                  <button class='btn btn-default' type='submit' value='Invite'>Invite to be rep</button>
+                  <button class='btn btn-default pull-right' type='submit' value='Invite'>Invite to be rep</button>
                 </form>
               @endif
 
@@ -46,6 +46,11 @@
         </div>
       </div>
 
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href='{{ route('project',['id'=>$project->id]) }}' class='btn btn-default'>back to {{$project->project}}</a>
+        </div>
+      </div>
 
     </div>
   </div>
