@@ -42,6 +42,7 @@
             <br/>
             <div class="form-group">
               <div class="col-md-6 col-md-offset-4">
+                <a href='{{ route('project',['id'=>$project->id]) }}' class='btn btn-default'>back to {{$project->project}}</a>
                 <button type="submit" class="btn btn-primary">
                   Save
                 </button>

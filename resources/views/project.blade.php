@@ -20,7 +20,7 @@
         </h1>
       </div>
       <div class='panel-body'>
-        {{$project->description}}
+        <?php echo create_links($project->description) ?>
       </div>
       <div class='panel-footer' id='like_project'>
         @component('component.like',['likable'=>$project,'target'=>'like_project']) @endcomponent
@@ -31,8 +31,13 @@
     </div>
 
     <div class='panel panel-default'>
-      <div class="panel-heading">
+      <div class="panel-heading clearfix">
         <h3>Team</h3>
+        @if($project->users->find(Auth::id()))
+          @if($project->users->find(Auth::id())->pivot->status > 0)
+            <a href="{{ route('edit_team',['id'=>$project->id]) }}" class='btn btn-default pull-right'>edit team</a>
+          @endif
+        @endif
       </div>
       <div class='panel-body'>
         @foreach($project->users as $user)
@@ -46,15 +51,24 @@
     </div>
 
     <div class='panel panel-default'>
-      <div class="panel-heading">
+      <div class="panel-heading clearfix">
         <h3>Needed skills</h3>
+        @if($project->users->find(Auth::id()))
+          @if($project->users->find(Auth::id())->pivot->status > 0)
+            <a href="/edit_project_skills/{{$project->id}}" class='btn btn-default pull-right'>edit needed skills</a>
+          @endif
+        @endif
       </div>
       <div class='panel-body'>
-        @foreach($project->project_skills as $skill)
-          <h4>{{$skill->skill}}</h4>
-          {{$skill->description}}
-          <hr>
-        @endforeach
+        @if(count($project->project_skills) > 0)
+          @foreach($project->project_skills as $skill)
+            <h4>{{$skill->skill}}</h4>
+            {{$skill->description}}
+            <hr>
+          @endforeach
+        @else
+          No skills yet!
+        @endif
       </div>
     </div>
 

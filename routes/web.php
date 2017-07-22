@@ -19,8 +19,6 @@ Use Illuminate\Http\Request;
 
 
 Route::get('test',function(){
-  return Notification::all();
-
 });
 
 //HOME
@@ -57,6 +55,7 @@ Route::post('/create_project','projects@create_project')->name('create_project')
 Route::get('edit_project/{id}','projects@edit_project')->name('edit_project');
 Route::get('/edit_team/{id}','projects@edit_team')->name('edit_team');
 Route::get('/edit_project_skills/{id}','projects@edit_project_skills')->name('edit_project_skills');
+Route::post('/delete_project_skill','projects@delete_project_skill')->name('delete_project_skill');
 Route::post('/update_project','projects@update_project')->name('update_project');
 Route::post('/update_project_skill','projects@update_project_skill')->name('update_project_skill');
 Route::post('/leave_project','projects@leave_project')->name('leave_project');

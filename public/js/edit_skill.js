@@ -14,3 +14,15 @@ function delete_skill(id)
       }
     }); //End ajax
   }
+
+function delete_project_skill(id)
+  {
+    $.ajax({
+      url:"/delete_project_skill",
+      type:"POST",
+      data:{id:id},
+      success:function(data){
+        $('#skill_'+id).remove();
+      }
+    }); //End ajax
+  }
