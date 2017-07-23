@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+Use App\User;
 Use App\Project_skill;
 use Auth;
 
@@ -127,5 +128,10 @@ class projects extends Controller
     {
       Auth::user()->projects()->updateExistingPivot($project_id,['status'=>0]);
       return redirect()->route('edit_projects');
+    }
+
+  public function remove_from_project(Request $request)
+    {
+      User::find($request->user_id)->projects()->detach($request->project_id);
     }
 }
