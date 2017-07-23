@@ -4,6 +4,10 @@
 <link href="{{ asset('css/form.css') }}" rel="stylesheet">
 @endsection
 
+@section('script')
+<script src="{{ asset('js/edit_team.js') }}"></script>
+@endsection
+
 @section('content')
 <div class='container'>
 
@@ -21,21 +25,32 @@
           </ul>
 
         </div>
-        <div class='panel-body'>
+        <div class='panel-body clearfix'>
           @foreach($project->users as $user)
             @component('component.user_link',['user'=>$user]) @endcomponent
 
+            <div class='pull-right'>
               @if($user->pivot->status == 1)
-                <span class='pull-right'>Team rep</span>
-              @elseif($user->pivot->status == 0 AND $project->reps()->pluck('id')->containsStrict(Auth::id() ) )
-                <form role='form' class='clearfix' method='post' action='{{ route('invite_to_rep')   }}'>
-                  {{ csrf_field() }}
-                  <input type='hidden' name='recipient_id' value='{{$user->id}}'>
-                  <input type='hidden' name='invitation_project' value='{{$project->id}}'>
-                  <button class='btn btn-default pull-right' type='submit' value='Invite'>Invite to be rep</button>
-                </form>
-              @endif
+                <span  class='pull-right'>Team rep</span>
+              @elseif($user->pivot->status !== 1 AND $project->reps()->pluck('id')->containsStrict(Auth::id() ) )
+              <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                manage
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                @if($user->pivot->status == 0)
+                  <li><a href="#" user_id='{{$user->id}}' project_id='{{$project->id}}' class='invite_to_rep'> Invite to be team rep</a>   </li>
+                @elseif($user->pivot->status == 2)
+                  <li><a href="#"><i>Invited to be rep</i></a></li>
+                @endif
+                <li role="separator" class="divider"></li>
+                <li><a href="#" user_id='{{$user->id}}' project_id='{{$project->id}}' class='remove_from_project'>Remove from project</a></li>
+              </ul>
+            </div>
 
+              @endif
+            </div>
             <hr />
           @endforeach
         </div>
@@ -48,7 +63,7 @@
 
       <div class="panel panel-default">
         <div class="panel-body">
-          <a href='{{ route('project',['id'=>$project->id]) }}' class='btn btn-default'>back to {{$project->project}}</a>
+          <a href='{{ route('project',['id'=>$project->id]) }}' class='btn btn-default'>back to project</a>
         </div>
       </div>
 

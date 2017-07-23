@@ -42,14 +42,19 @@ class notifications extends Controller
       $notification->sender()->associate($sender);
 
       //Associate with recipient
-      $recipient = User::find($request->recipient_id);
+      $recipient = User::find($request->user_id);
       $notification->recipient()->associate($recipient);
 
       //Connect to project and save
-      $project = Project::find($request->invitation_project);
+      $project = Project::find($request->project_id);
       $project->notifications()->save($notification);
 
-      return redirect()->route('edit_team',['project'=>$project]);
+      //Set user's status to 2 for invited to rep
+      $project
+        ->users()
+        ->updateExistingPivot($request->user_id,[
+          'status'=>2
+        ]);
     }
 
   public function view_notifications()
@@ -85,4 +90,28 @@ class notifications extends Controller
 
       return view('view_notifications');
     }
+
+
+    public function clear_notification($id)
+      {
+        //Special actions to take based on notification type
+        $notification = Notification::find($id);
+        switch($notification->type)
+          {
+            case 2:
+              //Set user status on project to 0 (uninvited to be rep)
+              Project::find($notification->notifiable_id)
+              ->users()
+              ->updateExistingPivot(Auth::id(),[
+                'status'=>0
+              ]);
+              break;
+          }
+
+        //Delete the notification
+        Notification::destroy($id);
+
+        //Reload the notifications page
+        return redirect()->route('view_notifications');
+      }
 }

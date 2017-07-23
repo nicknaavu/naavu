@@ -38,7 +38,7 @@
                   :
                   {{$notification->notifiable->subject}}
               @endif
-                  <a class='btn btn-danger pull-right' href='#'>Clear</a>
+                  <a class='btn btn-danger pull-right' href='{{ route('clear_notification',['id'=>$notification->id]) }}'>Clear</a>
               <hr />
 
             @endforeach

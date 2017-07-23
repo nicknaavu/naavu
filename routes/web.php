@@ -62,6 +62,7 @@ Route::post('/update_project','projects@update_project')->name('update_project')
 Route::post('/update_project_skill','projects@update_project_skill')->name('update_project_skill');
 Route::post('/leave_project','projects@leave_project')->name('leave_project');
 Route::get('/step_down/{project_id}','projects@step_down')->name('step_down');
+Route::post('/remove_from_project','projects@remove_from_project')->name('remove_from_project');
 
 //MESSAGES
 Route::get('/compose_message','messaging@compose_message')->name('compose_message');
@@ -75,6 +76,7 @@ Route::get('/view_notifications','notifications@view_notifications')->name('view
 Route::post('/invite_to_project','notifications@invite_to_project')->name('invite_to_project');
 Route::post('/invite_to_rep','notifications@invite_to_rep')->name('invite_to_rep');
 Route::get('/accept_invitation','notifications@accept_invitation')->name('accept_invitation');
+Route::get('/clear_notification/{id}','notifications@clear_notification')->name('clear_notification');
 
 //POSTS
 Route::get('/post/{post_id}','posts@post')->name('post');
