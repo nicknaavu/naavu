@@ -22,4 +22,8 @@
     No projects yet! <br/>
     <a href='{{ route('new_project') }}'>Create a project</a>
   @endif
+  
+  <a href="{{ route('profile') }}" class="btn btn-default">back to profile</a>
 @endsection
+
+

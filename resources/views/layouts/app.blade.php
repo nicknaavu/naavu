@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/naavu_basics.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/naavu_basics.css?version=2.2') }}" rel="stylesheet">
     @yield('style')
 
 
@@ -130,7 +130,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/naavu_basics.js') }}"></script>
+    <script src="{{ asset('js/naavu_basics.js?version=2.2') }}"></script>
     @yield('script')
 </body>
 </html>

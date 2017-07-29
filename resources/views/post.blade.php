@@ -7,7 +7,7 @@
       <div class='panel-heading'>
         <h2>{{$post->title}}</h2>
         @if($post->project != '')
-          <a href="{{ route('project',['id'=>$post->project->id]) }}">{{$post->project->project}}</a>
+          @component('component.project_link',['project'=>$post->project,'form'=>'link']) @endcomponent
         @endif
         @if($post->user->id == Auth::id())
           <a class='btn btn-danger' href="{{ route('delete_post',['post_id'=>$post->id])}}">Delete post</a>
@@ -22,7 +22,8 @@
       <div class='panel-footer'>
         @if(count($post->comments) > 0)
           @foreach($post->comments as $comment)
-            <a href="{{ route('profile',['id'=>$comment->commenter->id]) }}">{{$comment->commenter->name}}</a>
+            @component('component.user_link',['user'=>$comment->commenter]) @endcomponent
+            <div class='pull-right'>{{ $comment->created_at->format('M d, Y @g:i a') }}</div>
             <br/>
             {{$comment->body}}
             <hr>

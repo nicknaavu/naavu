@@ -13,7 +13,7 @@
             @foreach($interests as $interest)
             <div id='interest_{{$interest->id}}'>
               <div class="form-group">
-                <label for="interest" class="col-md-4 control-label">Skill</label>
+                <label for="interest" class="col-md-4 control-label">Interest</label>
                 <div class="col-md-6">
                     <input id="interests[{{$interest->id}}][interest]" type="text" class="form-control" name="interests[{{$interest->id}}][interest]" value="{{$interest->interest}}" required>
                 </div>
@@ -41,7 +41,7 @@
             @if(count($interests) == 0)
             <div id='new_interests_template' class=''>
               <div class="form-group">
-                <label for="interest" class="col-md-4 control-label">Skill</label>
+                <label for="interest" class="col-md-4 control-label">Interest</label>
                 <div class="col-md-6">
                     <input id="interest[]" type="text" class="form-control" name="interest[]" value="">
                 </div>
@@ -58,7 +58,7 @@
 
             <div id='new_interests_template' class='hidden template'>
               <div class="form-group">
-                <label for="interest" class="col-md-4 control-label">Skill</label>
+                <label for="interest" class="col-md-4 control-label">Interest</label>
                 <div class="col-md-6">
                     <input id="interest[]" type="text" class="form-control" name="interest[]" value="">
                 </div>
@@ -82,6 +82,8 @@
 
             <div class="form-group">
               <div class="col-md-6 col-md-offset-4">
+              
+              <a href="{{ route('profile') }}" class="btn btn-default">back to profile</a>
                 <button type="submit" class="btn btn-primary">
                   Save
                 </button>

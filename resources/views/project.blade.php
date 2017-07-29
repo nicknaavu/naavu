@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('script')
-  <script type='text/javascript' src="{{asset('js/test.js')}}"  ></script>
-@endsection
-
 @section('content')
   {{csrf_field()}}
 
@@ -62,7 +58,7 @@
       <div class='panel-body'>
         @if(count($project->project_skills) > 0)
           @foreach($project->project_skills as $skill)
-            <h4>{{$skill->skill}}</h4>
+            <h4>{{$skill->skill}}</h4><br/>
             {{$skill->description}}
             <hr>
           @endforeach
@@ -79,10 +75,13 @@
       </div>
       <div class='panel-body'>
         @if(count($project->posts) > 0)
-          @foreach($project->posts as $post)
+          @foreach($project->posts->sortByDesc('created_at') as $post)
             <div>
               <a href="/post/{{$post->id}}"><h4>{{$post->title}}</h4></a>
+              <span class='pull-right'>{{$post->created_at->format('M d, Y @g:i a')}}</span>
+              <br/>
               {{$post->body}}
+              <hr/>
             </div>
           @endforeach
         @else

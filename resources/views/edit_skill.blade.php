@@ -86,6 +86,8 @@
 
     <div class="form-group">
       <div class="col-md-6 col-md-offset-4">
+      <a href="{{ route('profile') }}" class="btn btn-default">back to profile</a>
+      
         <button type="submit" class="btn btn-primary">
           Save
         </button>

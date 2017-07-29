@@ -4,12 +4,24 @@ $.ajaxSetup({
   }
 });
 
+function scrollToTag(target){
+    var tag = $("#"+target);
+    $('html,body').animate({scrollTop: tag.offset().top - $('#context-nav').css('height')});
+}
+
+
 //To execute on startup
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
 });
 
 $(document).ready(function(){
+    
+    //Set up TOC
+    $('body').on('click','.toc',function(){
+      scrollToTag( $(this).attr('target') );      
+    });
+  
     //Set up clickable
     $('.clickable').click(function(){
       window.location.href = $(this).attr('target');
@@ -22,6 +34,9 @@ $(document).ready(function(){
 
     //Set up liking
     $('body').on('click','.like',function(){
+      
+   
+
         var likable_type = $(this).attr('likable_type');
         var likable_id = $(this).attr('likable_id');
         var target = $(this).attr('target');

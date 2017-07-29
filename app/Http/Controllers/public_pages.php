@@ -16,26 +16,29 @@ class public_pages extends Controller
   {
     //Get user
     $user = User::findOrFail($id);
-
-    //Projects left to review
-    if(Auth::user() !== $user)
+    
+    //Check if logged in
+    if(Auth::check())
       {
-        //Get shared projects
-        $shared_projects = Auth::user()->projects->whereIn('id',$user->projects->pluck('id'));
-
-        //Assign whether a review exists
-        foreach($shared_projects as $project)
-          {
-            if(  count(Review::where('project_id',$project->id)
-            ->where('reviewer_id',Auth::id())
-            ->where('reviewee_id',$user->id)
-            ->get()) >  0  )
-              {
-                $project->reviewed = 1;
-              }
-          }
+      //Projects left to review
+      if(Auth::user() !== $user)
+        {
+          //Get shared projects
+          $shared_projects = Auth::user()->projects->whereIn('id',$user->projects->pluck('id'));
+  
+          //Assign whether a review exists
+          foreach($shared_projects as $project)
+            {
+              if(  count(Review::where('project_id',$project->id)
+              ->where('reviewer_id',Auth::id())
+              ->where('reviewee_id',$user->id)
+              ->get()) >  0  )
+                {
+                  $project->reviewed = 1;
+                }
+            }
+        }
       }
-
     //Package variables
     $vars = compact('user','shared_projects');
 
